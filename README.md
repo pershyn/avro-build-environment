@@ -1,9 +1,9 @@
-# Apache Avro Development Environment in Vagrant
+## Apache Avro Dev Environment in Vagrant
 
 Vagrant file and salt states to initialize build environment for apache avro project.
 
 Apache avro has dependencies on thrift compiler and protobuf, that may be hard to configure/maintain.
-Also these specific dependencies can conflict with. Depencies that are installed locally on developer workstation.
+Also these specific dependencies can conflict with dependencies that are installed locally on developer workstation.
 
 So, now is the second time I have to recreate specific thrift compiler for avro project to recompile thrift schemas, and these scripts should make is as easy as:
 
