@@ -1,3 +1,4 @@
 base:
   '*':
-    - thrift-dev
+    - thrift
+    - maven

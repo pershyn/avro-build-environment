@@ -9,7 +9,9 @@
 thrift-build-env:
   pkg.installed:
     - pkgs:
-      - curl
+      - curl # for downloading thrift archive
+
+      # thrift deps from thrift site
       - libboost-dev
       - libboost-test-dev
       - libboost-program-options-dev
@@ -21,27 +23,28 @@ thrift-build-env:
       - pkg-config
       - g++
       - libssl-dev
+
       # some pythond deps
       - python-all
       - python-all-dev
       - python-all-dbg
+
       # java deps
+      # to work properly, java7 should be chosen
+      # java 6 could be removed with next command
+      # sudo apt-get remove openjdk-6-jre-headless
       - openjdk-7-jre-headless #=7u3-2.1.7-1
       - openjdk-7-jre-lib #=7u3-2.1.7-1
       - openjdk-7-jdk
-      - ant
-      # to work properly, java7 should be chosen
-      # sudo apt-get remove openjdk-6-jre-headless
+      - ant # needed to generate sources for java
 
-# build and install thrift-compiler (in separate shell script)
 /tmp/install-thrift.sh:
   file.managed:
-    - source: salt://install-thrift.sh
+    - source: salt://thrift.sh
+    - user: root
+    - group: root
     - mode: 755
     - require:
       - pkg: thrift-build-env
   cmd.run:
     - stateful: True
-    - require:
-      - file: /tmp/install-thrift.sh
-        # thrift being not already installed???
